@@ -1,0 +1,33 @@
+CREATE DATABASE dukundumurimo;
+USE dukundumurimo;
+
+CREATE TABLE manager (
+    ManagerId INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(50),
+    Password VARCHAR(255)
+);
+
+CREATE TABLE foods (
+    Food_Id INT AUTO_INCREMENT PRIMARY KEY,
+    Food_Name VARCHAR(100),
+    Food_OwnerName VARCHAR(100)
+);
+
+CREATE TABLE import (
+    I_Id INT AUTO_INCREMENT PRIMARY KEY,
+    Food_Id INT,
+    ImportDate DATE,
+    Quantity INT,
+    FOREIGN KEY (Food_Id) REFERENCES foods(Food_Id) ON DELETE CASCADE
+);
+
+CREATE TABLE export (
+    E_Id INT AUTO_INCREMENT PRIMARY KEY,
+    Food_Id INT,
+    ExportDate DATE,
+    Quantity INT,
+    FOREIGN KEY (Food_Id) REFERENCES foods(Food_Id) ON DELETE CASCADE
+);
+
+INSERT INTO manager (UserName, Password)
+VALUES ('admin', MD5('12345'));
